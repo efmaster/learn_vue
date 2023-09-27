@@ -1,22 +1,35 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "eslint ."
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@vue/eslint-config-airbnb-with-typescript": "^7.0.0",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "nuxt": "^3.7.3"
-  }
+    "name": "nuxt-app",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "prepare": "husky install",
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "lint:js": "eslint --ext .ts,.vue,.js,.cjs --ignore-path .gitignore .",
+        "lint:prettier": "prettier --check .",
+        "lint": "npm run lint:js && npm run lint:prettier",
+        "lintfix": "prettier --write --list-different . && npm run lint:js --fix"
+    },
+    "devDependencies": {
+        "@nuxt/devtools": "latest",
+        "@nuxtjs/eslint-config-typescript": "^12.1.0",
+        "@nuxtjs/tailwindcss": "^6.8.0",
+        "@vue/eslint-config-airbnb-with-typescript": "^7.0.0",
+        "eslint": "^8.49.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "eslint-plugin-tailwindcss": "^3.13.0",
+        "husky": "^8.0.3",
+        "vue-eslint-parser": "^9.3.1"
+    },
+    "dependencies": {
+        "nuxt": "^3.7.3"
+    },
+    "husky": {
+        "pre-commit": "npm run lint"
+    }
 }
